@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+        
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h1>Trivial Trivia</h1>
+                    <p id="startButton" style="display: none">
+                        <a class="btn btn-primary btn-lg" href="#" role="button">START</a>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="time"></div>
+                            <div id="questions">
+                                <legend>What is Your Favorite Pet?</legend>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question1">Option 1</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question1">Option 2</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question1">Option 3</label>
+
+                                <legend>Are you nuts?</legend>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question2">Option 1</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question2">Option 2</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question2">Option 3</label>
+
+
+                                <legend>Will you go there?</legend>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question3">Option 1</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question3">Option 2</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="question3">Option 3</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                    <div id="results" class="results well" style='display:none'>
+                            <div class="glyphicon glyphicon-education"></div>
+                            <div class="list-group">
+                                    <a href="#" class="list-group-item active "><h3>All done!</h3></a>
+                                    <a href="#" id="Correct answers" class="list-group-item text-left">Correct answers:</a>
+                                    <a href="#" id= "InCorrect answers" class="list-group-item text-left">Incorrect answers:</a>
+                                    <a href="#" class="list-group-item text-left">Unanswered:</a>
+                                  </div>
+                                </div>
+                                <div class="col-md-4"> </div>  
+
+                        <!-- <div class="glyphicon glyphicon-education"></div>
+                        <h3>All done!</h3>
+                        <div>Correct answers: </div>
+                        <div>Incorrect answers: </div>
+                        <div>Unanswered: </div> -->
+
+
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
