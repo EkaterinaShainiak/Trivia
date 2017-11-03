@@ -42,6 +42,28 @@ var newTrivia = getArray();
 
 var legend = "";
 var answers = "";
+$("#startButton").on("click", function(){
+    $("#time").attr("style", 'display:block');
+    $("#questions").attr("style", 'display:block');
+    $("#startButton").attr("style", 'display:none');
+
+    startGame();
+})
+// isOneChecked()  does not work
+function isOneChecked() {
+    // All <input> tags...
+    var chx = $('input');
+    for (var i=0; i<chx.length; i++) {
+      // If you have more than one radio group, also check the name attribute
+      // for the one you want as in && chx[i].name == 'choose'
+      // Return true from the function on first match of a checked item
+      if (chx[i].type == 'radio' && chx[i].checked) {
+        return true;
+      } 
+    }
+    // End of the loop, return false
+    return false;
+  }
 
 for (i = 0; i < newTrivia.length; i++) {
     legend += "<legend>" + newTrivia[i].question + "</legend>";
@@ -70,7 +92,6 @@ function displayResults() {
 
     for (i = 0; i < newTrivia.length; i++) {
         var nameOfRbn = "question" + i;
-        console.log($('input[name=' + nameOfRbn + ']:checked'))
         if ($('input[name=' + nameOfRbn + ']:checked').parent().text() == newTrivia[i].correctAnsw) {
             correctAnsw++;
             // console.log("correctAnsw", correctAnsw);
@@ -88,4 +109,3 @@ function displayResults() {
     console.log("correctAnsw", correctAnsw);
     console.log("InCorrect: ", incorrectAnsw)
 };
-    startGame();
