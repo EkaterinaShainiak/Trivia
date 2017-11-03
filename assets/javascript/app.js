@@ -106,6 +106,7 @@ function displayResults() {
         // console.log("InCorrect: ", incorrectAnsw);
 
     };
-    console.log("correctAnsw", correctAnsw);
-    console.log("InCorrect: ", incorrectAnsw)
+    $("#correctAnswers").text("Correct answers: " + correctAnsw);
+    $("#inCorrectAnswers").text("Incorrect answers: " + incorrectAnsw);
+    $("#unAnswered").text("Unanswered: " + unanswered);
 };
