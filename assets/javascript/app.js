@@ -33,16 +33,15 @@ function getArray() {
             asnwersOptions: ["Answer 1", "Answer 2", "Answer 3"],
             correctAnsw: "Answer 1"
         },
-        
+
     ]
     return TRIVIA;
 }
-
 var newTrivia = getArray();
 
 var legend = "";
 var answers = "";
-$("#startButton").on("click", function(){
+$("#startButton").on("click", function () {
     $("#time").attr("style", 'display:block');
     $("#questions").attr("style", 'display:block');
     $("#startButton").attr("style", 'display:none');
@@ -53,17 +52,17 @@ $("#startButton").on("click", function(){
 function isOneChecked() {
     // All <input> tags...
     var chx = $('input');
-    for (var i=0; i<chx.length; i++) {
-      // If you have more than one radio group, also check the name attribute
-      // for the one you want as in && chx[i].name == 'choose'
-      // Return true from the function on first match of a checked item
-      if (chx[i].type == 'radio' && chx[i].checked) {
-        return true;
-      } 
+    for (var i = 0; i < chx.length; i++) {
+        // If you have more than one radio group, also check the name attribute
+        // for the one you want as in && chx[i].name == 'choose'
+        // Return true from the function on first match of a checked item
+        if (chx[i].type == 'radio' && chx[i].checked) {
+            return true;
+        }
     }
     // End of the loop, return false
     return false;
-  }
+}
 
 for (i = 0; i < newTrivia.length; i++) {
     legend += "<legend>" + newTrivia[i].question + "</legend>";
@@ -92,21 +91,25 @@ function displayResults() {
 
     for (i = 0; i < newTrivia.length; i++) {
         var nameOfRbn = "question" + i;
+       
+       console.log(nameOfRbn);
+        // var x = document.getElementsByName(nameOfRbn)[i].checked
+        // if(!x) {
+        //     // unanswered ++;
+        // }
+        
+        console.log(($('input[name=' + nameOfRbn + ']:checked')[0]));
         if ($('input[name=' + nameOfRbn + ']:checked').parent().text() == newTrivia[i].correctAnsw) {
             correctAnsw++;
-            // console.log("correctAnsw", correctAnsw);
-            $()
         };
-        if ($('input[name=' + nameOfRbn + ']:checked').parent().text() != newTrivia[i].correctAnsw) {
-            incorrectAnsw++;
-            console.log(incorrectAnsw);
+        if ($('input[name=' + nameOfRbn + ']:checked')[0] === undefined) {
+            unanswered++;
+            console.log((unanswered));
         };
-        
-
-        // console.log("InCorrect: ", incorrectAnsw);
-
     };
-    $("#correctAnswers").text("Correct answers: " + correctAnsw);
-    $("#inCorrectAnswers").text("Incorrect answers: " + incorrectAnsw);
-    $("#unAnswered").text("Unanswered: " + unanswered);
+    incorrectAnsw = newTrivia.length - correctAnsw - unanswered;
+    
+    $("#correctAnswers").text(correctAnsw);
+    $("#inCorrectAnswers").text(incorrectAnsw);
+    $("#unAnswered").text(unanswered);
 };
