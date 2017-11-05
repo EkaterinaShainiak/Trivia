@@ -1,6 +1,6 @@
-var QUESTION_COUNT = 10;
-var TRIVIA_SERVICE_URL = "https://opentdb.com/api.php?amount=" + QUESTION_COUNT + "&difficulty=medium&type=multiple";
-
+var QUESTION_COUNT = 6;
+var TRIVIA_SERVICE_URL = "https://opentdb.com/api.php?amount=" + QUESTION_COUNT + "&category=18&difficulty=easy&type=multiple";
+var ROUND_DURATION = 30;
 
 $(document).ready(function () {
     var trivia = newTrivia();
@@ -15,7 +15,7 @@ $(document).ready(function () {
     };
     $("#questions").html(questions);
     $("#startButton").on("click", function () {    
-        startGame();
+        startGame(trivia);
     })        
 });
 
@@ -32,7 +32,6 @@ function newTrivia() {
         method: "GET",
         async: false,
     }).done(function (response) {
-        console.log(response);
         for (i = 0; i < response.results.length; i++) {
             trivia.push({
                 question: response.results[i].question,
@@ -56,41 +55,38 @@ function shuffle(array) {
     return array;
 }
 
-function startGame() {
+function startGame(trivia) {
     $("#time").attr("style", 'display:block');
     $("#questions").attr("style", 'display:block');
     $("#startButton").attr("style", 'display:none');
 
-    var sec = 5;
     var clock = setInterval(function () {
-        sec--;
-        $("#time").html("<b>Time: " + sec + "</b>");
-        if (sec === 0) {
+        ROUND_DURATION--;
+        $("#time").html("<b>Time: " + ROUND_DURATION + "</b>");
+        if (ROUND_DURATION === 0) {
             clearInterval(clock);
-            displayResults();
+            displayResults(trivia);
         }
     }, 1000);
 }
 
-function displayResults() {
+function displayResults(trivia) {
     $("#results").attr("style", "display:block")
     $("#questions").attr("style", "display:none")
 
     var correctAnsw = 0;
     var incorrectAnsw = 0;
     var unanswered = 0;
-    for (i = 0; i < newTrivia.length; i++) {
-        var nameOfRbn = "question" + i;
-
-        if ($('input[name=' + nameOfRbn + ']:checked').parent().text() == newTrivia[i].correctAnsw) {
+    for (i = 0; i < trivia.length; i++) {
+        var $selectedRadioButton = $('input[name=question' + i + ']:checked');
+        if ($selectedRadioButton.parent().text() == trivia[i].correctAnsw) {
             correctAnsw++;
         };
-        if ($('input[name=' + nameOfRbn + ']:checked')[0] === undefined) {
+        if ($selectedRadioButton[0] === undefined) {
             unanswered++;
-            console.log((unanswered));
         };
     };
-    incorrectAnsw = newTrivia.length - correctAnsw - unanswered;
+    incorrectAnsw = trivia.length - correctAnsw - unanswered;
 
     $("#correctAnswers").text(correctAnsw);
     $("#inCorrectAnswers").text(incorrectAnsw);
