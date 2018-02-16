@@ -8,6 +8,8 @@
     <title>Document</title>
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Mustache JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
@@ -30,13 +32,13 @@
                         <div class="col-md-12">
                             <div id="time" style='display:none'></div>
                             <div id="questions" style='display:none'>
-                                <legend>Question 1?</legend>
-                                <label class="radio-inline">
-                                    <input type="radio" name="question1">Answer 1</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="question1">Answer 2</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="question1">Answer 3</label>
+                                {{#trivia}}
+                                    <legend>{{{question}}}</legend>
+                                    {{#answersOptions}}
+                                        <label class="radio-inline">
+                                           <input type="radio" name="question{{idx}}">{{{.}}}</label>
+                                    {{/answersOptions}}
+                                {{/trivia}}
                             </div>
                         </div>
                     </div>
